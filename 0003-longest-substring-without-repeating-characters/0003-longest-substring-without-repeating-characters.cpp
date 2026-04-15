@@ -1,21 +1,17 @@
-#include <string>
-#include <unordered_set>
-
 class Solution {
 public:
-    int lengthOfLongestSubstring(std::string s) {
-        std::unordered_set<char> seen;
-        int left = 0, maxLen = 0;
-
-        for (int right = 0; right < s.size(); ++right) {
-            while (seen.count(s[right])) {
-                seen.erase(s[left]);
-                ++left;
+    int lengthOfLongestSubstring(string s) {
+        vector<bool> count(256,0);
+        int first=0,second=0,len=0;
+        while(second<s.size()){
+            while(count [s[second]]){
+                count[s[first]]=0;
+                first ++;
             }
-            seen.insert(s[right]);
-            maxLen = std::max(maxLen, right - left + 1);
+        count[s[second]]=1;
+        len=max(len,second-first+1);
+        second++;
         }
-
-        return maxLen;
+        return len;
     }
 };
