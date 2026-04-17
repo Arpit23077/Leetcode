@@ -3,11 +3,19 @@ public:
     int findMin(vector<int>& nums) {
         int n=nums.size();
         int min=nums[0];
-        for(int i=0;i<n;i++){
-            if(nums[i]<min){
-                min=nums[i];
+        int start=0,end=n-1,mid;
+        while(start<end){
+            mid=start+(end-start)/2;
+            if(nums[mid]>nums[end]){
+                start=mid+1;
+            }
+            else if(nums[mid]<nums[end]){
+                end=mid;
+            }
+            else{
+                end--;
             }
         }
-        return min;
+        return nums[start];
     }
 };
