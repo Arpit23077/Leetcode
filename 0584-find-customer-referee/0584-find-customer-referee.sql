@@ -4,4 +4,4 @@ SELECT
 FROM 
     Customer
 WHERE
-    referee_id is null OR referee_id !='2'
+    ifnull(referee_id,0) !=2
